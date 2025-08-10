@@ -40,13 +40,12 @@ class player(Area2D):
 		self.position += velocity * delta
 		self.position = self.position.clamp(zero, self.screen_size) #impede o personagem de atravessar o limite da tela
 		
-		animated_sprite = self.get_node("AnimatedSprite2D") #facilita o acesso do AnimatedSprite2D
+		self.animated_sprite = self.get_node("AnimatedSprite2D") #facilita o acesso do AnimatedSprite2D
 		
 		#troca de animações do personagem:
 		if velocity.x != 0:
-			animated_sprite.animation = "walk"
-			animated_sprite.flip_h = velocity.x < 0
-		elif velocity.y != 0:
-			animated_sprite.animation = "up"
-			animated_sprite.flip_h = velocity.y > 0
-			
+			self.animated_sprite.animation = "walk"
+			self.animated_sprite.flip_h = velocity.x < 0
+		if velocity.y != 0:
+			self.animated_sprite.animation = "up"
+			self.animated_sprite.flip_v = velocity.y > 0
